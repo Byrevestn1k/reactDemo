@@ -1,5 +1,4 @@
 
-
 const NavigationItem = (props) => {
    const { text, isUppercasetext, description, shoulRenderDescription } = props
 

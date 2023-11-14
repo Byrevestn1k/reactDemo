@@ -1,0 +1,7 @@
+.usercard {
+    border: 1px solid silver;
+    height: 80px;
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+}

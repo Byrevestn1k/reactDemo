@@ -1,4 +1,3 @@
-
 import NavigationItem from '../NavigationItem/NavigationItem';
 import './header.css';
 
@@ -27,24 +26,23 @@ const Header = () => {
       },
    ];
 
-
-
+  
    return (
       <header>
-         <div className='header'>
-            {
-               navElements.map((element) => {
-                  return (
-                     <NavigationItem
-
-                        text={element.text}
-                        isUppercasetext={element.isUppercasetext}
-                        description={element.description} />
-                  )
-               })
-            }
-         </div>
-         <NavigationItem text='header' isUppercasetext={false} />
+      <div className='header'>
+      {
+            navElements.map((element) => {
+            return (
+               <NavigationItem
+                  key={element.text}
+                  text={element.text}
+                  isUppercasetext={element.isUppercasetext}
+                  description={element.description} />
+            )
+         })
+         }
+      </div>
+      <NavigationItem text='header' isUppercasetext={false} />
       </header>);
 }
 

@@ -1,13 +1,20 @@
+const Input = (props) => {
 
+	const { value, type, placeholder, label, onChangeFunction } = props;
 
-const Input = ({ type, placeholder, onChange, labelInfo, value }) => {
-   return (
-      <div>
-         <label htmlFor="">{labelInfo || "text"}
-            <input type={type} placeholder={placeholder} value={value} onChange={(e) => onChange(e.target.value)} />
-         </label>
-      </div>
-   )
+	return (
+		<label>
+			{label}
+			<input
+				type={type || "text"}
+				placeholder={placeholder}
+				onChange={(event) => onChangeFunction(event.target.value)}
+				value={value}
+
+			/>
+		</label>
+
+	)
 }
 
 export default Input;

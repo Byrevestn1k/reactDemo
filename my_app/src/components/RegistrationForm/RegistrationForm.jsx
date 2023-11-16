@@ -1,74 +1,56 @@
 import { useState } from "react";
 import Input from "../Input";
-import UserCard from "../UserCard";
+import UserCard from "../UserCard/UserCard";
+import './registrationForm.css';
 
 const RegistrationForm = () => {
 
-    const [users, setUser] = useState([])
+	const [users, setUsers] = useState([]);
 
-    const [name, setName] = useState()
-    const [surname, setSurname] = useState()
-    const [email, setEmail] = useState()
+	const [name, setName] = useState();
+	const [surname, setSurname] = useState();
+	const [email, setEmail] = useState();
 
-    function onAddUser() {
-        const user = {
-            name: name,
-            surname: surname,
-            email: email
-        };
-        // users.push(user)
-        setUser([...users, user])
-    }
-    function onGetName(value) {
-        setName(value)
-    };
-    function onGetSurname(value) {
-        setSurname(value);
-    };
-    function onGetEmail(value) {
-        setEmail(value);
-    };
+	const onAddUser = () => {
+		const user = {
+			name,
+			surname,
+			email,
+		};
 
-    return (
-        <div className="common">
-            <Input
-                type="text"
-                placeholder={name}
-                value=""
-                valueCheck=""
-                labelInfo="Name: "
-                onChange={onGetName}
-            />
-            <Input
-                type="text"
-                placeholder={surname}
-                value=""
-                valueCheck=""
-                labelInfo="Surname: "
-                onChange={onGetSurname}
-            />
-            <Input
-                type="text"
-                placeholder={email}
-                value=""
-                valueCheck=""
-                labelInfo="Email: "
-                onChange={onGetEmail}
-            />
-            <button type="buttom" onClick={onAddUser}>Add User</button>
-
-            <div>
-                {
-                    users.map((user) => {
-                        const { name, surname, email, index } = user;
-                        return (<UserCard name={name} surname={surname} email={email} key={index} />)
-                    })}
-            </div>
+		setUsers([...users, user]);
+		setName('');
+		setSurname('');
+		setEmail('');
+	}
 
 
+	const onGetName = (value) => {
+		setName(value)
+	};
 
+	const onGetSurname = (value) => {
+		setSurname(value)
+	}
 
-        </div>
-    )
-}
+	const onGetEmail = (value) => {
+		setEmail(value)
+	}
+
+	return (
+		<div className="common">
+			<Input label="Name: " placeholder="Enter Your Name" onChangeFunction={onGetName} value={name} />
+			<Input label="Surname: " placeholder="Enter Your Surname" onChangeFunction={onGetSurname} value={surname} />
+			<Input label="Email: " placeholder="Enter Your Email" onChangeFunction={onGetEmail} value={email} />
+			<button type="button" onClick={onAddUser}>Add User</button>
+			<div className="users-list">
+				{ users.map((user, index) => {
+					const { name, surname, email } = user;
+					return (<UserCard key={index} name={name} surname={surname} email={email} />)
+				}) }
+			</div>
+		</div>
+	);
+};
+
 export default RegistrationForm;

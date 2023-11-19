@@ -1,19 +1,19 @@
 const Input = (props) => {
-
-	const { value, type, placeholder, label, onChangeFunction } = props;
+	const { value, type, placeholder, label, onChangeFunction, classNameFlag } = props;
 
 	return (
-		<label>
-			{label}
+		<div>
+			<label>
+				{label}</label>
 			<input
 				type={type || "text"}
 				placeholder={placeholder}
 				onChange={(event) => onChangeFunction(event.target.value)}
 				value={value}
-
+				className={classNameFlag ? value ? '' : 'red' : ''}
 			/>
-		</label>
 
+		</div>
 	)
 }
 

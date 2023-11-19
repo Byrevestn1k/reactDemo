@@ -1,12 +1,30 @@
 .common-user-card {
 	border: 1px solid silver;
-	height: 160px;
+	height: 200px;
 	width: 150px;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: stretch;
 	justify-content: space-around;
 	border-radius: 20px;
 	margin-bottom: 20px;
+	padding: 10px;
+}
+img{
+	
+	height: 100px;
+}
+.item.title{
+	font-weight: bold;
+}
+.line-through{
+	text-decoration: line-through;
+}
+.red{
+color: red;
+font-size: 18px;
+}
+.itemsale{
+	font-size: 12px;
 }
 

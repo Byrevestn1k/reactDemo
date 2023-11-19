@@ -8,28 +8,35 @@ import { v4 as uuidv4 } from 'uuid';
 const DEAFAULT_P = [
 	{
 		nameOfProduct: 'AAAA',
-		category: 'aaaaa',
+		image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwuDUI0zYOoQcOyVbJ49SFZlYpFNssk8PdkY1becjiuxA7LiP6XzF8LS8REob6iqWip5E&usqp=CAU',
 		price: '11111',
 		sale: '10',
 		id: uuidv4(),
 	},
 	{
 		nameOfProduct: 'BBBBBB',
-		category: 'bbbbbbb',
+		image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYU0aTO98cv0QHOWvIvYQYjKkS-vlWWzuYifBdiUUtsY_-pGIVg4oAlpN6beOASqkaz1o&usqp=CAU',
 		price: '2222222',
 		sale: '10',
 		id: uuidv4(),
 	},
 	{
 		nameOfProduct: 'CCCCCC',
-		category: 'ccccc',
+		image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzomlcJUBoOjm_1pPps9X4InpiHNQcWyIv4IFho6PfdhJgkJi0ZBCaCKOs_DC34agENX8&usqp=CAU',
 		price: '333333',
 		sale: '10',
 		id: uuidv4(),
 	},
 	{
+		nameOfProduct: 'CCCCCC',
+		image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzomlcJUBoOjm_1pPps9X4InpiHNQcWyIv4IFho6PfdhJgkJi0ZBCaCKOs_DC34agENX8&usqp=CAU',
+		price: '333333',
+		sale: '',
+		id: uuidv4(),
+	},
+	{
 		nameOfProduct: 'VVVV',
-		category: 'vvvvvv',
+		image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqjnE1nMn0ZsmuJmi1opvZwd1W5nOdn5PBcAFnddcPDexG7dCWPL1y-KPPGOUiPcQOK1M&usqp=CAU',
 		price: '444444',
 		sale: '10',
 		id: uuidv4(),
@@ -38,45 +45,44 @@ const DEAFAULT_P = [
 const RegistrationForm = () => {
 	const [products, setProducts] = useState(DEAFAULT_P);
 	const [nameOfProduct, setNameOfProduct] = useState();
-	const [category, setCategory] = useState();
+	const [image, setImage] = useState();
 	const [price, setPrice] = useState();
 	const [sale, setSale] = useState();
-
+	const [redClassFlag, setredClassFlag] = useState(false);
 
 	const onAddProduct = () => {
 		const product = {
 			nameOfProduct,
-			category,
+			image,
 			price,
 			sale,
 			id: uuidv4(),
 
 		};
-		if (product.nameOfProduct && product.category && product.price) {
+
+		if (product.nameOfProduct && product.image && product.price) {
 			setProducts([...products, product]);
 			setNameOfProduct(``);
-			setCategory('');
+			setImage('');
 			setPrice('');
 			setSale('');
+			setredClassFlag(false)
 		}
 		else {
-			onGetRedClass(nameOfProduct)
-			onGetRedClass(category)
-			onGetRedClass(price)
+			setredClassFlag(true)
 		}
 	}
 
 
-	const onGetRedClass = (value) => {
-		return value ? `` : `red`
-	};
+
+
 
 	const onGetName = (value) => {
 		setNameOfProduct(value)
 	};
 
-	const onGetCategory = (value) => {
-		setCategory(value)
+	const onGetImage = (value) => {
+		setImage(value)
 	}
 
 	const onGetPrice = (value) => {
@@ -96,7 +102,7 @@ const RegistrationForm = () => {
 		let newUp = products.map((product) => {
 			console.log(el)
 			if (product.id === el)
-				return product.id//чомусь вертає обєкт !
+				return product.id//чомусь вертає обєктп !
 		});
 		console.log(newUp)
 	}
@@ -104,20 +110,22 @@ const RegistrationForm = () => {
 	return (
 		<div className='common'>
 			<h2>Add new product</h2>
-			<Input label="name: " placeholder="Enter product's name" onChangeFunction={onGetName} value={nameOfProduct} />
-			<Input label="category: " placeholder="Enter product's category" onChangeFunction={onGetCategory} value={category} />
-			{/* <Input label="sale: " placeholder="Enter product's sale" onChangeFunction={onGetSale} value={sale} type='number' /> */}
-			<Input label="price: " placeholder="Enter product's price" onChangeFunction={onGetPrice} type='number' value={price} />
-			<Input label="sale: " placeholder="Enter product's sale" onChangeFunction={onGetSale} type='number' value={sale} />
-			{/* <Input label="quantity: " placeholder="Enter product's quantity" onChangeFunction={onGetEmail} value={email} />  */}
-			<button type="button" onClick={onAddProduct}>Add</button>
+			<div className="add-new-product-panel">
+				<Input classNameFlag={redClassFlag} label="name: " placeholder="Enter product's name" onChangeFunction={onGetName} value={nameOfProduct} />
+				<Input classNameFlag={redClassFlag} label="image: " placeholder="Enter product's image url" onChangeFunction={onGetImage} value={image} />
+				<Input classNameFlag={redClassFlag} label="price: " placeholder="Enter product's price" onChangeFunction={onGetPrice} type='number' value={price} />
+				<Input label="sale: " placeholder="Enter product's sale" onChangeFunction={onGetSale} type='number' value={sale} />
+
+			</div>
+			<button className="add-product-item" type="button" onClick={onAddProduct}>Add</button>
+			<hr />
 			<div className='products-list'>
 				{products.map((product, index) => {
-					const { nameOfProduct, category, price, sale, id } = product;
-					return (<UserCard key={index} nameOfProduct={nameOfProduct} category={category} price={price} sale={sale} id={id} onDeleteProduct={onDeleteProduct} onUpdateProduct={onUpdateProduct} />)
+					const { nameOfProduct, image, price, sale, id } = product;
+					return (<UserCard key={index} nameOfProduct={nameOfProduct} image={image} price={price} sale={sale} id={id} onDeleteProduct={onDeleteProduct} onUpdateProduct={onUpdateProduct} />)
 				})}
 			</div>
-		</div>
+		</div >
 	);
 };
 

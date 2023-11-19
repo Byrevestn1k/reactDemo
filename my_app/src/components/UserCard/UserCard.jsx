@@ -1,25 +1,26 @@
 import './userCard.css'
 
-const UserCard = ({ nameOfProduct, category, price, sale, id, onDeleteProduct, onUpdateProduct }) => {
+const UserCard = ({ nameOfProduct, image, price, sale, id, onDeleteProduct, onUpdateProduct }) => {
 
 	return (
 		<div className='common-user-card'>
+			<div className="item ">
+				<div><img src={image} alt="" /></div>
+			</div>
+			<div className="item title">
+				<div>{` ${nameOfProduct}`}</div>
+			</div>
+
 			<div className="item">
-				<div>{`Product's name : ${nameOfProduct}`}</div>
+				<div className={sale > 0 ? 'line-through' : ''}>{`${price}`}$</div>
 			</div>
 			<div className="item">
-				<div>{`category : ${category}`}</div>
-			</div>
-			<div className="item">
-				<div>{`price : ${price}`}$</div>
-			</div>
-			<div className="item">
-				<div className='itemname'>{`sale :`}</div>
-				<div className="itemvalue">{+price - (+price / 100 * +sale)}$ ({sale}%)`</div>
+				{sale > 0 ? <div className='itemsale'>{`sale : (${sale}%)`}</div> : ''}
+				{sale > 0 ? <div className="itemvalue"><span className='red'>{+price - (+price / 100 * +sale)}$ </span></div> : ''}
 
 			</div>
-			<button type='button' onClick={() => { onDeleteProduct(id) }}>delete product</button>
-			<button type='button' onClick={() => { onUpdateProduct(id) }}>update product</button>
+			{/* <button type='button' onClick={() => { onDeleteProduct(id) }}>delete product</button>
+			<button type='button' onClick={() => { onUpdateProduct(id) }}>update product</button> */}
 		</div>
 	)
 };

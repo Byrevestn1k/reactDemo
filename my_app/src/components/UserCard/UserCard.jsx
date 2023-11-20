@@ -14,13 +14,13 @@ const UserCard = ({ nameOfProduct, image, price, sale, id, onDeleteProduct, onUp
 			<div className="item">
 				<div className={sale > 0 ? 'line-through' : ''}>{`${price}`}$</div>
 			</div>
-			<div className="item">
+			<div className="item-price">
 				{sale > 0 ? <div className='itemsale'>{`sale : (${sale}%)`}</div> : ''}
 				{sale > 0 ? <div className="itemvalue"><span className='red'>{+price - (+price / 100 * +sale)}$ </span></div> : ''}
 
 			</div>
-			{/* <button type='button' onClick={() => { onDeleteProduct(id) }}>delete product</button>
-			<button type='button' onClick={() => { onUpdateProduct(id) }}>update product</button> */}
+			<button className='cart-button' type='button' onClick={() => { onDeleteProduct(id) }}>delete product</button>
+			<button className='cart-button' type='button' onClick={() => { onUpdateProduct(id) }}>update product</button>
 		</div>
 	)
 };

@@ -10,10 +10,13 @@
 flex-wrap: wrap;
 justify-content: center;
 		align-items: center;
+	
 }
 
-input.red {
+
+input.error {
 border-color:red;
+color:red;
 }
 
 label{
@@ -37,6 +40,7 @@ label{
 .add-product-item{
 	margin: 20px auto;
 	width: 200px;
+	padding: 5px;
 	
 }
 
@@ -45,4 +49,8 @@ hr{
 	height: 1px;
 	box-sizing: border-box;
 	margin-bottom: 30px;
+}
+
+.edit-product{
+color: green;
 }

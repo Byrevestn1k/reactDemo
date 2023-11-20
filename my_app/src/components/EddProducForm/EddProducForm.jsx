@@ -49,7 +49,8 @@ const RegistrationForm = () => {
 	const [price, setPrice] = useState();
 	const [sale, setSale] = useState();
 	const [redClassFlag, setredClassFlag] = useState(false);
-
+	const [buttonSaveProductFlag, setbuttonSaveProductFlag] = useState(false);
+	const [getIdForSave, setGetIdForSave] = useState();
 	const onAddProduct = () => {
 		const product = {
 			nameOfProduct,
@@ -74,9 +75,13 @@ const RegistrationForm = () => {
 	}
 
 
+	const onGetIdForSave = (value) => {
+		setGetIdForSave(value)
+	};
 
-
-
+	const onGetbuttonSaveProductFlag = (value) => {
+		setbuttonSaveProductFlag(value)
+	};
 	const onGetName = (value) => {
 		setNameOfProduct(value)
 	};
@@ -93,23 +98,76 @@ const RegistrationForm = () => {
 	};
 
 	const onDeleteProduct = (id) => {
-		console.log(id);
-
 		setProducts(products.filter((product) => product.id !== id))
+	}
+	const returnToAdd = (id) => {
+		setNameOfProduct(``);
+		setImage('');
+		setPrice('');
+		setSale('');
+		setbuttonSaveProductFlag(false)
+	}
+	const onSaveProduct = () => {
+		products.map((product) => {
+			if (product.id === getIdForSave) {
+				product.nameOfProduct = nameOfProduct;
+				product.image = image;
+				product.price = price;
+				product.sale = sale;
+
+				return
+			}
+
+		})
+
+		setProducts(products)
+		onGetName('');
+		onGetImage('');
+		onGetPrice('');
+		onGetSale('');
+		setredClassFlag('')
+
 	}
 
 	const onUpdateProduct = (el) => {
-		let newUp = products.map((product) => {
-			console.log(el)
-			if (product.id === el)
-				return product.id//чомусь вертає обєктп !
+		let newUp = products.filter((product) => {
+
+			if (product.id === el) {
+				onGetbuttonSaveProductFlag(true)
+				return product;
+			}
+
 		});
-		console.log(newUp)
+		if (newUp.length > 0) {
+			console.log(newUp[0].id);
+			onGetName(newUp[0].nameOfProduct)
+			onGetImage(newUp[0].image)
+			onGetPrice(newUp[0].price)
+			onGetSale(newUp[0].sale)
+			onGetIdForSave(el)
+			// console.log(nameOfProduct);
+		}
+		else {
+			return
+		}
 	}
 
+	const editProductTitle = () => {
+		let title
+		products.map((product) => {
+			if (product.id === getIdForSave) {
+				title = product.nameOfProduct
+				return
+			}
+		})
+		return title
+	}
+	console.log(editProductTitle());
 	return (
 		<div className='common'>
-			<h2>Add new product</h2>
+			{
+				buttonSaveProductFlag ? <h2 className="edit-product">Edit product - {editProductTitle()} </h2> : <h2>Add new product</h2>
+			}
 			<div className="add-new-product-panel">
 				<Input classNameFlag={redClassFlag} label="name: " placeholder="Enter product's name" onChangeFunction={onGetName} value={nameOfProduct} />
 				<Input classNameFlag={redClassFlag} label="image: " placeholder="Enter product's image url" onChangeFunction={onGetImage} value={image} />
@@ -117,13 +175,20 @@ const RegistrationForm = () => {
 				<Input label="sale: " placeholder="Enter product's sale" onChangeFunction={onGetSale} type='number' value={sale} />
 
 			</div>
-			<button className="add-product-item" type="button" onClick={onAddProduct}>Add</button>
+			{
+				buttonSaveProductFlag ? <div><button className="add-product-item" type="button" onClick={onSaveProduct}>save product</button> <button className="add-product-item" type="button" onClick={returnToAdd}>return to add mode</button></div> : <button className="add-product-item" type="button" onClick={onAddProduct}>add</button>
+			}
 			<hr />
 			<div className='products-list'>
-				{products.map((product, index) => {
-					const { nameOfProduct, image, price, sale, id } = product;
-					return (<UserCard key={index} nameOfProduct={nameOfProduct} image={image} price={price} sale={sale} id={id} onDeleteProduct={onDeleteProduct} onUpdateProduct={onUpdateProduct} />)
-				})}
+				{
+
+					products.map((product, index) => {
+						const { nameOfProduct, image, price, sale, id } = product;
+						return (<UserCard key={index} nameOfProduct={nameOfProduct} image={image} price={price} sale={sale} id={id} onDeleteProduct={onDeleteProduct} onUpdateProduct={onUpdateProduct} />)
+
+					})
+
+				}
 			</div>
 		</div >
 	);

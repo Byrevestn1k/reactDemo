@@ -7,11 +7,10 @@ const Footer = () => {
       <footer>
          <FooterItem content='FOOTER' isLowersetext={true} />
          <div className="footer">
-         <FooterItem content='Головна' isLowersetext={false} />
-         <FooterItem content='Про нас' isLowersetext={false} />
-         <FooterItem content='Контакти' isLowersetext={false} />
-         <FooterItem content='Блог' isLowersetext={false} />
-         <NavigationItem text="navItem" />
+            <FooterItem content='Головна' isLowersetext={false} />
+            <FooterItem content='Про нас' isLowersetext={false} />
+            <FooterItem content='Контакти' isLowersetext={false} />
+            <FooterItem content='Блог' isLowersetext={false} />
          </div>
       </footer>);
 }

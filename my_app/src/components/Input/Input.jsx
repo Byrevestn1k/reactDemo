@@ -10,7 +10,7 @@ const Input = (props) => {
 				placeholder={placeholder}
 				onChange={(event) => onChangeFunction(event.target.value)}
 				value={value}
-				className={classNameFlag ? value ? '' : 'red' : ''}
+				className={classNameFlag ? value ? '' : 'error' : ''}
 			/>
 
 		</div>

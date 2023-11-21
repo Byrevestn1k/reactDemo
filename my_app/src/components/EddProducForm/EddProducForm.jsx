@@ -1,7 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UsersContext } from "../../App";
 import Input from "../Input";
 import UserCard from "../UserCard/UserCard";
 import './eddProducForm.css';
+// import  ClassName from 'ClassName'; //бібліотека, додаємо кілька класів
+// import {isEmpty} from 'lodash';//чи пустий
 // import style from './eddProducForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -43,6 +46,7 @@ const DEAFAULT_P = [
 	}
 ]
 const RegistrationForm = () => {
+
 	const [products, setProducts] = useState(DEAFAULT_P);
 	const [nameOfProduct, setNameOfProduct] = useState();
 	const [image, setImage] = useState();
@@ -51,6 +55,11 @@ const RegistrationForm = () => {
 	const [redClassFlag, setredClassFlag] = useState(false);
 	const [buttonSaveProductFlag, setbuttonSaveProductFlag] = useState(false);
 	const [getIdForSave, setGetIdForSave] = useState();
+
+
+	const { setUsersCount } = useContext(UsersContext)
+
+	setUsersCount(products.length);
 	const onAddProduct = () => {
 		const product = {
 			nameOfProduct,
@@ -162,7 +171,10 @@ const RegistrationForm = () => {
 		})
 		return title
 	}
-	console.log(editProductTitle());
+
+
+
+
 	return (
 		<div className='common'>
 			{

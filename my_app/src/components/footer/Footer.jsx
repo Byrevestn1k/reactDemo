@@ -1,8 +1,11 @@
 import './footer.css';
 import FooterItem from "../FooterItem";
-import NavigationItem from "../NavigationItem";
+// import NavigationItem from "../NavigationItem";
+import { useContext } from "react";
+import { UsersContext } from "../../App";
 
 const Footer = () => {
+   const { usersCount } = useContext(UsersContext)
    return (
       <footer>
          <FooterItem content='FOOTER' isLowersetext={true} />
@@ -11,6 +14,7 @@ const Footer = () => {
             <FooterItem content='Про нас' isLowersetext={false} />
             <FooterItem content='Контакти' isLowersetext={false} />
             <FooterItem content='Блог' isLowersetext={false} />
+            <div>Users count: {usersCount}</div>
          </div>
       </footer>);
 }

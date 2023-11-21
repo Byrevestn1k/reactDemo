@@ -1,7 +1,7 @@
 import RegistrationForm from '../RegistrationForm';
 import EddProducForm from '../EddProducForm';
-const Main = () => {
-
+const Main = (props) => {
+    const { onChangeUsersCount } = props
     return (
         <div>
             {/* <RegistrationForm /> */}

@@ -39,7 +39,7 @@ const Header = (props) => {
          usersCount: usersCount,
       },
       {
-         text: `max lenght name: `,
+         text: `longest name: `,
          isUppercasetext: true,
          usersCount: productMaxLenghtName,
       },

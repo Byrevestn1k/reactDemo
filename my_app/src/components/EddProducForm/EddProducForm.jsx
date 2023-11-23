@@ -63,7 +63,7 @@ const RegistrationForm = () => {
 	function maxLenghtWord(products) {
 		let maxLenghtWord = 0
 		let maxLenghtWordName = ``
-		let arrMaxLenghtWordsName = [];
+		let arrMaxLenghtWordsName = '';
 		products.map((element) => {
 			if (element.nameOfProduct.length > maxLenghtWord) {
 				maxLenghtWord = element.nameOfProduct.length
@@ -73,12 +73,12 @@ const RegistrationForm = () => {
 		})
 		products.map((element) => {
 			if (element.nameOfProduct.length === maxLenghtWordName.length) {
-				arrMaxLenghtWordsName.push(element.nameOfProduct)
+				arrMaxLenghtWordsName += element.nameOfProduct + ' '
 			}
 
 		})
 
-		return maxLenghtWordName;
+		return arrMaxLenghtWordsName;
 	}
 
 

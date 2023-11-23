@@ -62,8 +62,9 @@ const RegistrationForm = () => {
 
 	function maxLenghtWord(products) {
 		let maxLenghtWord = 0
-		let maxLenghtWordName = ``
+		let maxLenghtWordName = ''
 		let arrMaxLenghtWordsName = '';
+		// let arrMaxLenghtWordsName = [];
 		products.map((element) => {
 			if (element.nameOfProduct.length > maxLenghtWord) {
 				maxLenghtWord = element.nameOfProduct.length
@@ -74,6 +75,7 @@ const RegistrationForm = () => {
 		products.map((element) => {
 			if (element.nameOfProduct.length === maxLenghtWordName.length) {
 				arrMaxLenghtWordsName += element.nameOfProduct + ' '
+				// arrMaxLenghtWordsName.push(element.nameOfProduct)
 			}
 
 		})
@@ -81,8 +83,8 @@ const RegistrationForm = () => {
 		return arrMaxLenghtWordsName;
 	}
 
-
-	setProductMaxLenghtName(maxLenghtWord(products));
+	// setProductMaxLenghtName
+	console.log(maxLenghtWord(products));
 
 
 

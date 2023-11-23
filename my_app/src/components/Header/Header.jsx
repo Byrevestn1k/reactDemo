@@ -1,12 +1,18 @@
 import NavigationItem from '../NavigationItem/NavigationItem';
 import './header.css';
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { UsersContext } from "../../App";
 const Header = (props) => {
    const { } = props
 
    const { usersCount } = useContext(UsersContext)
+   const { productMaxLenghtName } = useContext(UsersContext)
+   // let stringmaxName = ``;
 
+   // productMaxLenghtName.forEach(element => {
+   //    stringmaxName += element + ` `
+   // });
+   console.log(productMaxLenghtName);
    const navElements = [
       {
          text: 'First',
@@ -28,10 +34,16 @@ const Header = (props) => {
          isUppercasetext: true,
       },
       {
-         text: `user count: `,
+         text: `products count: `,
          isUppercasetext: true,
          usersCount: usersCount,
-      },];
+      },
+      {
+         text: `max lenght name: `,
+         isUppercasetext: true,
+         usersCount: productMaxLenghtName,
+      },
+   ];
 
 
    return (

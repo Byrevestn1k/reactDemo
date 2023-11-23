@@ -56,8 +56,39 @@ const RegistrationForm = () => {
 	const [buttonSaveProductFlag, setbuttonSaveProductFlag] = useState(false);
 	const [getIdForSave, setGetIdForSave] = useState();
 
-
 	const { setUsersCount } = useContext(UsersContext)
+	const { setProductMaxLenghtName } = useContext(UsersContext)
+
+
+	function maxLenghtWord(products) {
+		let maxLenghtWord = 0
+		let maxLenghtWordName = ``
+		let arrMaxLenghtWordsName = [];
+		products.map((element) => {
+			if (element.nameOfProduct.length > maxLenghtWord) {
+				maxLenghtWord = element.nameOfProduct.length
+				maxLenghtWordName = element.nameOfProduct
+			}
+
+		})
+		products.map((element) => {
+			if (element.nameOfProduct.length === maxLenghtWordName.length) {
+				arrMaxLenghtWordsName.push(element.nameOfProduct)
+			}
+
+		})
+
+		return maxLenghtWordName;
+	}
+
+
+	setProductMaxLenghtName(maxLenghtWord(products));
+
+
+
+
+
+
 
 	setUsersCount(products.length);
 	const onAddProduct = () => {
@@ -67,7 +98,6 @@ const RegistrationForm = () => {
 			price,
 			sale,
 			id: uuidv4(),
-
 		};
 
 		if (product.nameOfProduct && product.image && product.price) {

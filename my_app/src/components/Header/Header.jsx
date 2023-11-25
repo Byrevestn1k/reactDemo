@@ -2,16 +2,14 @@ import NavigationItem from '../NavigationItem/NavigationItem';
 import './header.css';
 import { useContext } from "react";
 import { UsersContext } from "../../App";
+
+
 const Header = (props) => {
    const { } = props
 
    const { usersCount } = useContext(UsersContext)
    const { productMaxLenghtName } = useContext(UsersContext)
-   // let stringmaxName = ``;
 
-   // productMaxLenghtName.forEach(element => {
-   //    stringmaxName += element + ` `
-   // });
    console.log(productMaxLenghtName);
    const navElements = [
       {
@@ -30,19 +28,19 @@ const Header = (props) => {
          description: "second description",
       },
       {
-         text: 'samsung',
+         text: 'quarter',
          isUppercasetext: true,
       },
-      {
-         text: `products count: `,
-         isUppercasetext: true,
-         usersCount: usersCount,
-      },
-      {
-         text: `longest name: `,
-         isUppercasetext: true,
-         usersCount: productMaxLenghtName,
-      },
+      // {
+      //    text: `Coctails count: `,
+      //    isUppercasetext: true,
+      //    usersCount: usersCount,
+      // },
+      // {
+      //    text: `longest name: `,
+      //    isUppercasetext: true,
+      //    usersCount: productMaxLenghtName,
+      // },
    ];
 
 
@@ -52,6 +50,7 @@ const Header = (props) => {
             {
                navElements.map((element) => {
                   return (
+
                      <NavigationItem
                         key={element.text}
                         text={element.text}

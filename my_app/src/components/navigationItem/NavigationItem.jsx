@@ -1,4 +1,4 @@
-import './navigationitem.css';
+import './navigationItem.css';
 
 const NavigationItem = (props) => {
    const { text, isUppercasetext, description } = props

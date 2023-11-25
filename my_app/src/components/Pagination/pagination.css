@@ -1,0 +1,11 @@
+.coctails-list{
+   display: flex;
+   flex-wrap: wrap;
+	flex-grow: 1;
+   gap:20px; 
+}
+
+.pagination{
+   display: flex;
+   justify-content: center;
+}

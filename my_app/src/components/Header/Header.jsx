@@ -7,10 +7,8 @@ import { UsersContext } from "../../App";
 const Header = (props) => {
    const { } = props
 
-   const { usersCount } = useContext(UsersContext)
-   const { productMaxLenghtName } = useContext(UsersContext)
+   const { usersCount, productMaxLenghtName } = useContext(UsersContext)
 
-   console.log(productMaxLenghtName);
    const navElements = [
       {
          text: 'First',
@@ -31,16 +29,16 @@ const Header = (props) => {
          text: 'quarter',
          isUppercasetext: true,
       },
-      // {
-      //    text: `Coctails count: `,
-      //    isUppercasetext: true,
-      //    usersCount: usersCount,
-      // },
-      // {
-      //    text: `longest name: `,
-      //    isUppercasetext: true,
-      //    usersCount: productMaxLenghtName,
-      // },
+      {
+         text: `Coctails count: `,
+         isUppercasetext: true,
+         usersCount: usersCount,
+      },
+      {
+         text: `longest name: `,
+         isUppercasetext: true,
+         usersCount: productMaxLenghtName,
+      },
    ];
 
 

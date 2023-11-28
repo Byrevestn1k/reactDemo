@@ -56,8 +56,7 @@ const RegistrationForm = () => {
 	const [buttonSaveProductFlag, setbuttonSaveProductFlag] = useState(false);
 	const [getIdForSave, setGetIdForSave] = useState();
 
-	const { setUsersCount } = useContext(UsersContext)
-	const { setProductMaxLenghtName } = useContext(UsersContext)
+	const { setUsersCount, setProductMaxLenghtName } = useContext(UsersContext)
 
 
 	function maxLenghtWord(products) {

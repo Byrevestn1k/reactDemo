@@ -6,10 +6,7 @@ import { numberOfPageContext } from "../Coctails/Coctails"
 
 const Pagination = ({ }) => {
 	let arrayOfPAginationItem = document.querySelectorAll(`.pagination-item`)
-	let { createPagination } = useContext(numberOfPageContext)
-	let { setNumberOfpage } = useContext(numberOfPageContext)
-	let { currentNumber } = useContext(numberOfPageContext)
-	let { renderPagination } = useContext(numberOfPageContext)
+	let { createPagination, setNumberOfpage, currentNumber, renderPagination } = useContext(numberOfPageContext)
 
 	function onclickPaginationItem(event) {
 		setNumberOfpage(+event.target.innerText);

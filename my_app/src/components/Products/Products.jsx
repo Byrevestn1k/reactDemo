@@ -39,7 +39,7 @@ const Products = () => {
                 <div>{fetchError && `Opps, we have error...: ${fetchError}`}</div>
             </div> */}
             <QueryLoader fetching={fetching} error={fetchError} />
-            <div>
+            <div className='products-list'>
                 {users.map(({ name, username, phone, id }) => {
 
                     return (<UserCard

@@ -54,7 +54,6 @@ const Coctails = () => {
 			.catch(err => {
 				setFetching(false)
 				setFetchError(err)
-
 			});
 	}, [])
 

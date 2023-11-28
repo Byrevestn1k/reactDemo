@@ -86,12 +86,8 @@ const RegistrationForm = () => {
 	console.log(maxLenghtWord(products));
 
 
-
-
-
-
-
 	setUsersCount(products.length);
+
 	const onAddProduct = () => {
 		const product = {
 			nameOfProduct,

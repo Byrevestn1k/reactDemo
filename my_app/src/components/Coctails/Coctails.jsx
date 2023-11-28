@@ -1,14 +1,13 @@
 import './coctails.css'
-
-import { useEffect, useState, createContext } from 'react';
-import UserCard from "../UserCard";
+import { useEffect, useState, createContext, useContext } from 'react';
 import QueryLoader from "../QueryLoader";
 import CoctailItem from '../CoctailItem/CoctailItem';
 import Pagination from '../Pagination/Pagination';
-import { indexOf } from 'lodash';
-
+import { UsersContext } from "../../App";
+import { v4 as uuidv4 } from 'uuid';
 
 export const numberOfPageContext = createContext()
+
 const Coctails = () => {
 	const [coctails, setCoctails] = useState([])
 	const [fetching, setFetching] = useState(false)
@@ -18,6 +17,32 @@ const Coctails = () => {
 	let startIndex = numberOfpage * currentNumber - currentNumber
 	let endtIndex = numberOfpage * currentNumber - 1
 	let number;
+
+	const { setUsersCount, setProductMaxLenghtName } = useContext(UsersContext)
+
+	function maxLenghtWord(products) {
+		let maxLenghtWord = 0
+		let maxLenghtWordName = ''
+		let arrMaxLenghtWordsName = '';
+		// let arrMaxLenghtWordsName = [];
+		products.map((element) => {
+			if (element.strDrink.length > maxLenghtWord) {
+				maxLenghtWord = element.strDrink.length
+				maxLenghtWordName = element.strDrink
+			}
+		})
+		products.map((element) => {
+			if (element.strDrink.length === maxLenghtWordName.length) {
+				arrMaxLenghtWordsName += `"${element.strDrink}" `
+				// arrMaxLenghtWordsName.push(element.strDrink)
+			}
+		})
+			;
+		return arrMaxLenghtWordsName;
+	}
+
+
+
 	useEffect(function () {
 		setFetching(true)
 		fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`)
@@ -25,7 +50,6 @@ const Coctails = () => {
 			.then(resp => {
 				setFetching(false)
 				setCoctails(resp.drinks)
-
 			})
 			.catch(err => {
 				setFetching(false)
@@ -33,6 +57,9 @@ const Coctails = () => {
 
 			});
 	}, [])
+
+	setProductMaxLenghtName(maxLenghtWord(coctails));
+	setUsersCount(coctails.length);
 
 	function createPagination(current) {
 		let currentArray = []
@@ -68,7 +95,9 @@ const Coctails = () => {
 						return (<CoctailItem
 							nameOfCoctail={strDrink}
 							imageSrc={strDrinkThumb}
-							id={idDrink} />)
+							id={idDrink}
+							key={uuidv4()}
+						/>)
 
 					})}
 

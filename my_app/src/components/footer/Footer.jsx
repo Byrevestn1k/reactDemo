@@ -14,7 +14,7 @@ const Footer = () => {
             <FooterItem content='Про нас' isLowersetext={false} />
             <FooterItem content='Контакти' isLowersetext={false} />
             <FooterItem content='Блог' isLowersetext={false} />
-            {/* <div>Users count: {usersCount}</div> */}
+            <div>Coctails count: {usersCount}</div>
          </div>
       </footer>);
 }

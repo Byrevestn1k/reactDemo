@@ -2,7 +2,7 @@ import PaginationItem from '../PaginationItem';
 import './pagination.css'
 import { useState, useContext } from 'react';
 import { numberOfPageContext } from "../Coctails/Coctails"
-
+import { v4 as uuidv4 } from 'uuid';
 
 const Pagination = ({ }) => {
 	let arrayOfPAginationItem = document.querySelectorAll(`.pagination-item`)
@@ -42,7 +42,7 @@ const Pagination = ({ }) => {
 			<div className='pagination-item' onClick={onClickStart}>&#60;&#60;  </div>
 			{
 				createPagination(currentNumber).map((element) => {
-					return (<PaginationItem number={element} onclick={onclickPaginationItem} />)
+					return (<PaginationItem key={uuidv4()} number={element} onclick={onclickPaginationItem} />)
 
 				})
 			}

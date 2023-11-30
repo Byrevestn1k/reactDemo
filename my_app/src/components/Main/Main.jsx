@@ -5,6 +5,7 @@ import Wrappers from '../Wrappers';
 import Coctails from '../Coctails/Coctails';
 import RefImput from '../RefImput';
 import Modal from '../Modal';
+import RestOfVacation from '../RestOfVacation';
 const Main = (props) => {
     const { onChangeUsersCount } = props
     return (
@@ -12,10 +13,10 @@ const Main = (props) => {
             {/* <RegistrationForm /> */}
             {/* <EddProducForm /> */}
             {/* <Products /> */}
-
-            <Coctails />
+            {/* <Coctails /> */}
             {/* <RefImput /> */}
-            <Modal />
+            {/* <Modal /> */}
+            <RestOfVacation/>
         </div>
     )
 }

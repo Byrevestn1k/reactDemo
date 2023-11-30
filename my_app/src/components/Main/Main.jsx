@@ -16,7 +16,7 @@ const Main = (props) => {
             {/* <Coctails /> */}
             {/* <RefImput /> */}
             {/* <Modal /> */}
-            <RestOfVacation/>
+            {/* <RestOfVacation/> */}
         </div>
     )
 }

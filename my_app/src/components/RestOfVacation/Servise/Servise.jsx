@@ -5,7 +5,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { RestVacation } from "../RestOfVacation"
 import SameYear from "../SameYear";
 const Servise = (props) => {
-	const {getAllDaysOfServise}=useContext(RestVacation)
 	const [startService, setStartService] =useState()
 	const [endService, setEndService] = useState()
 	const [daysOfServise, setDaysOfServise] = useState()// додаткова відпустка

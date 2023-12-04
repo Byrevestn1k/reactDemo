@@ -46,12 +46,21 @@ const Header = (props) => {
 
    return (
       <header>
-
-         <Link to={HOME_PATH}>Home</Link>
-         <Link to={PRODUCTS_PATH}>Products</Link>
-         <Link to={REGISTRATION_PATH}>Registration</Link>
-         <Link to={REF_PATH}>Ref</Link>
-
+<div className='header'>
+<div className='common'>
+               <Link to={REF_PATH}>vacation</Link>
+               </div>
+               <div className='common'>
+               <Link to={HOME_PATH}>Coctails</Link>
+               </div>
+               <div className='common'>
+               <Link to={PRODUCTS_PATH}>Products</Link>
+               </div>
+               <div className='common'>
+               <Link to={REGISTRATION_PATH}>Registration</Link>
+               </div>
+               
+         </div>
          {/* <div className='header'>
             {
                navElements.map((element) => {

@@ -1,4 +1,4 @@
-import './userCard.css'
+import './usercard.css'
 
 const UserCard = ({ nameOfProduct, image, price, sale, id, onDeleteProduct, onUpdateProduct }) => {
 

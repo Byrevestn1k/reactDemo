@@ -2,6 +2,8 @@ import NavigationItem from '../NavigationItem/NavigationItem';
 import './header.css';
 import { useContext } from "react";
 import { UsersContext } from "../../App";
+import { Link } from "react-router-dom";
+import { HOME_PATH, PRODUCTS_PATH, REGISTRATION_PATH, REF_PATH } from "../../constants/constants";
 
 
 const Header = (props) => {
@@ -44,21 +46,27 @@ const Header = (props) => {
 
    return (
       <header>
-         <div className='header'>
+
+         <Link to={HOME_PATH}>Home</Link>
+         <Link to={PRODUCTS_PATH}>Products</Link>
+         <Link to={REGISTRATION_PATH}>Registration</Link>
+         <Link to={REF_PATH}>Ref</Link>
+
+         {/* <div className='header'>
             {
                navElements.map((element) => {
                   return (
-
-                     <NavigationItem
-                        key={element.text}
-                        text={element.text}
-                        isUppercasetext={element.isUppercasetext}
-                        description={element.usersCount} />
+    
+                     // <NavigationItem
+                     //    key={element.text}
+                     //    text={element.text}
+                     //    isUppercasetext={element.isUppercasetext}
+                     //    description={element.usersCount} />
                   )
                })
             }
-         </div>
-         <NavigationItem text='header' isUppercasetext={false} />
+         </div> */}
+         {/* <NavigationItem text='header' isUppercasetext={false} /> */}
       </header>);
 }
 

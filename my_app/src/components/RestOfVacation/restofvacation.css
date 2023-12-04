@@ -1,0 +1,14 @@
+.restoftitle__main{
+    display: flex;
+}
+.serviseofyeaer{
+    width: 400px;
+
+}
+
+.service{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    justify-content: space-around;
+}

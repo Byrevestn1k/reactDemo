@@ -1,12 +1,11 @@
 
-import { useEffect, useState, createContext, useContext } from 'react';
+import { useEffect, useState,  useContext } from 'react';
 import Input from "../../Input";
-
 import { v4 as uuidv4 } from 'uuid';
-
-
+import { RestVacation } from "../RestOfVacation"
+import SameYear from "../SameYear";
 const Servise = (props) => {
-	let years;
+	const {getAllDaysOfServise}=useContext(RestVacation)
 	const [startService, setStartService] =useState()
 	const [endService, setEndService] = useState()
 	const [daysOfServise, setDaysOfServise] = useState()// додаткова відпустка
@@ -32,66 +31,68 @@ const Servise = (props) => {
 	else {
 		
 		if(endDate.getMonth()>startDate.getMonth()){
-			setAdditionalLeave ((new Date (endService).getFullYear())- (new Date (startService).getFullYear()))
+			console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
+			setAdditionalLeave ((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
 		}
 
 		else if(endDate.getMonth()< startDate.getMonth()){
-			console.log('Вислуга повних років',((new Date (endService).getFullYear())- (new Date (startService).getFullYear())-1));
-			setAdditionalLeave(((new Date (endService).getFullYear())- (new Date (startService).getFullYear())-1))
+			console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
+			setAdditionalLeave(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
 		}
 		else  {
 			
 			if(endDate.getDate()>=startDate.getDate()){
-				console.log('Вислуга повних років',((new Date (endService).getFullYear())- (new Date (startService).getFullYear())));
-				setAdditionalLeave((new Date (endService).getFullYear())- (new Date (startService).getFullYear()))
+				console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
+				setAdditionalLeave((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
 			}
 			else{
-				console.log('Вислуга повних років',((new Date (endService).getFullYear())- (new Date (startService).getFullYear())-1));
-				setAdditionalLeave(((new Date (endService).getFullYear())- (new Date (startService).getFullYear())-1))
+				console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
+				setAdditionalLeave(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
 			}
 		}
 			
 	}
-
-	setDaysOfServise(additionalLeave>5?additionalLeave-5:0)
-			console.log(daysOfServise);
-
-			 
+	
+			// console.log(`вислуга  повних років  `+additionalLeave);
+			setDaysOfServise(additionalLeave>5?additionalLeave-5:0)
+			// getAllDaysOfServise(daysOfServise)
 	}
+
+		
 	function addPeriod(){
 		
 	}
-
+	let thisYear = new Date().getFullYear()
+	let lastYear = new Date(2015,11,31).getFullYear()
+	let arrYears=[];
+	for (let i = lastYear; i <= thisYear; i++) {
+		arrYears.push(i)
+		
+	}
 	
 	return (
-	<>		
-	<div className="service__title">
-		<h2>Вислуга років</h2>
-	</div>
-	<div className="service__main">
-	<h3>Вислуга років</h3>
-	<Input label="Початок служби " type="date"  onChangeFunction={onGetStart} value={startService} />
-	 <Input label="Кінець служби " type="date" onChangeFunction={onGetEnd} value={endService} />
-	{/* <ServiseDate  label='Початок служби' id='startService' type='date' value={value}/>
-	<ServiseDate  label='Кінець служби' id='endService' type='date' value={value}/> */}
-
-	<button onClick={addPeriod}>Додати період</button>
-	<button onClick={getdaysOfServise}>розрахувати</button>
-
-	<div>Днів додаткової відпустки: {daysOfServise}</div>
-	<div>вислуга років: {additionalLeave}</div>
-	{/* <div>вислуга місяців: {daysOfServise / (new Date().getFullYear()%4!==0?365:366)}</div> */}
-		
+	<div className='service'>		
 		<div>
-			{
-
-			}
-			
+			<div className="service__title">
+				<h2>Вислуга років</h2>
+			</div>
+			<div className="service__main">
+			<Input label="Початок служби " type="date"  onChangeFunction={onGetStart} value={startService} />
+			<Input label="Кінець служби " type="date" onChangeFunction={onGetEnd} value={endService} />
+			<button onClick={addPeriod}>Додати період</button>
+			<button onClick={getdaysOfServise}>розрахувати</button>
+			<div>Днів додаткової відпустки станом на останню вказану дату: {daysOfServise}</div>
+			<div>вислуга років: {additionalLeave}</div>
+			</div>
 		</div>
-		
-		
+		<div>
+				<div className="restoftitle">
+				{arrYears.map((el)=>{
+					return <SameYear year={el} daysOfServise={daysOfServise} />
+				})	}
+		</div>
+		</div>
 	</div>
-	</>
 
 	
 	)

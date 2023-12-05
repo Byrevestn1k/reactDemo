@@ -53,15 +53,14 @@ const Header = (props) => {
                </div>
                <div className='common'>
                <Link to={REF_PATH}>Coctails</Link>
-               </div>
-               
+               </div> 
                <div className='common'>
                <Link to={PRODUCTS_PATH}>Products</Link>
                </div>
                <div className='common'>
                <Link to={REGISTRATION_PATH}>Registration</Link>
                </div>
-               
+
          </div>
          {/* <div className='header'>
             {

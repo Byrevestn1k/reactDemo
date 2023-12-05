@@ -22,7 +22,7 @@ const Servise = (props) => {
 	
 	let startDate = new Date (startService)
 	let endDate = new Date (endService)
-	
+	let additionalLeave;
 	if(endDate.getFullYear()-startDate.getFullYear()<=5){
 		console.log('Вислуга повних років', endDate.getFullYear()-startDate.getFullYear());
 		setAdditionalLeave(endDate.getFullYear()-startDate.getFullYear());
@@ -31,30 +31,31 @@ const Servise = (props) => {
 		
 		if(endDate.getMonth()>startDate.getMonth()){
 			console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
-			setAdditionalLeave ((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
+			additionalLeave = ((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
 		}
 
 		else if(endDate.getMonth()< startDate.getMonth()){
 			console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
-			setAdditionalLeave(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
+			additionalLeave =(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
 		}
 		else  {
 			
 			if(endDate.getDate()>=startDate.getDate()){
 				console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
-				setAdditionalLeave((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
+				additionalLeave =((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
 			}
 			else{
 				console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
-				setAdditionalLeave(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
+				additionalLeave =(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
 			}
 		}
 			
 	}
 	
 			// console.log(`вислуга  повних років  `+additionalLeave);
+			setAdditionalLeave(additionalLeave)
 			setDaysOfServise(additionalLeave>5?additionalLeave-5:0)
-			// getAllDaysOfServise(daysOfServise)
+					// getAllDaysOfServise(daysOfServise)
 	}
 
 		

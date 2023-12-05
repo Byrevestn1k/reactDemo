@@ -48,11 +48,13 @@ const Header = (props) => {
       <header>
 <div className='header'>
 <div className='common'>
-               <Link to={REF_PATH}>vacation</Link>
+
+               <Link to={HOME_PATH}>vacation</Link>
                </div>
                <div className='common'>
-               <Link to={HOME_PATH}>Coctails</Link>
+               <Link to={REF_PATH}>Coctails</Link>
                </div>
+               
                <div className='common'>
                <Link to={PRODUCTS_PATH}>Products</Link>
                </div>

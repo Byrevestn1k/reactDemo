@@ -20,8 +20,8 @@ const App = () => {
       <div className="app">
         <Header />
         <Routes>
-        <Route path={REF_PATH} element={<RestOfVacation />} />
-          <Route path={HOME_PATH} element={<Coctails />} />
+        <Route path={REF_PATH} element={< Coctails/>} />
+          <Route path={HOME_PATH} element={< RestOfVacation/>} />
           <Route path={PRODUCTS_PATH} element={<EddProducForm />} />
           <Route path={REGISTRATION_PATH} element={<RegistrationForm />} />
           

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { UsersContext } from "../../App";
 import Input from "../Input";
-import UserCard from "../UserCard/UserCard";
+import ProductCard from "../ProductCard/ProductCard";
 import './eddProducForm.css';
 // import  ClassName from 'ClassName'; //бібліотека, додаємо кілька класів
 // import {isEmpty} from 'lodash';//чи пустий
@@ -223,7 +223,7 @@ const RegistrationForm = () => {
 
 					products.map((product, index) => {
 						const { nameOfProduct, image, price, sale, id } = product;
-						return (<UserCard key={index} nameOfProduct={nameOfProduct} image={image} price={price} sale={sale} id={id} onDeleteProduct={onDeleteProduct} onUpdateProduct={onUpdateProduct} />)
+						return (<ProductCard key={index} nameOfProduct={nameOfProduct} image={image} price={price} sale={sale} id={id} onDeleteProduct={onDeleteProduct} onUpdateProduct={onUpdateProduct} />)
 
 					})
 

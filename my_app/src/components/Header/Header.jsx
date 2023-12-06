@@ -3,7 +3,7 @@ import './header.css';
 import { useContext } from "react";
 import { UsersContext } from "../../App";
 import { Link } from "react-router-dom";
-import { HOME_PATH, PRODUCTS_PATH, REGISTRATION_PATH, REF_PATH } from "../../constants/constants";
+import { COCTAIL_PATH, PRODUCTS_PATH, REGISTRATION_PATH, VACATION_PATH } from "../../constants/constants";
 
 
 const Header = (props) => {
@@ -49,10 +49,10 @@ const Header = (props) => {
 <div className='header'>
 <div className='common'>
 
-               <Link to={HOME_PATH}>vacation</Link>
+               <Link to={VACATION_PATH}>vacation</Link>
                </div>
                <div className='common'>
-               <Link to={REF_PATH}>Coctails</Link>
+               <Link to={COCTAIL_PATH}>Coctails</Link>
                </div> 
                <div className='common'>
                <Link to={PRODUCTS_PATH}>Products</Link>

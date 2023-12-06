@@ -1,28 +1,45 @@
-import './usercard.css'
+import { Link } from "react-router-dom";
+import "./usercard.css";
 
-const UserCard = ({ nameOfProduct, image, price, sale, id, onDeleteProduct, onUpdateProduct }) => {
-
-	return (
-		<div className='common-user-card'>
-			<div className="item ">
-				<div><img src={image} alt="" /></div>
-			</div>
-			<div className="item title">
-				<div>{` ${nameOfProduct}`}</div>
-			</div>
-
-			<div className="item">
-				<div className={sale > 0 ? 'line-through' : ''}>{`${price}`}$</div>
-			</div>
-			<div className="item-price">
-				{sale > 0 ? <div className='itemsale'>{`sale : (${sale}%)`}</div> : ''}
-				{sale > 0 ? <div className="itemvalue"><span className='red'>{+price - (+price / 100 * +sale)}$ </span></div> : ''}
-
-			</div>
-			<button className='cart-button' type='button' onClick={() => { onDeleteProduct(id) }}>delete product</button>
-			<button className='cart-button' type='button' onClick={() => { onUpdateProduct(id) }}>update product</button>
-		</div>
-	)
+const UserCard = ({
+  name,
+  username,
+  email,
+  id,
+  onDeleteProduct,
+	onUpdateProduct
+}) => {
+  return (
+ 
+        
+      <div className="common-user-card">
+      <Link to={`/user/${id}`}>
+        <div>{`Name : ${name}`}</div>
+        <div>{`username : ${username}`}</div>
+        <div>{`Email : ${email}`}</div>
+        </Link>
+        <button
+        className='cart-button'
+          type="button"
+          onClick={() => {
+          (onDeleteProduct(id));
+          }}
+        >
+          Delete User
+        </button>
+        <button
+        className='cart-button'
+          type="button"
+          onClick={() => {
+            onUpdateProduct(id);
+          }}
+        >
+          Update User
+        </button>
+      </div>
+  
+ 
+  );
 };
 
 export default UserCard;

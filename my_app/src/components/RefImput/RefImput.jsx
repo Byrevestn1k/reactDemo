@@ -1,5 +1,5 @@
 
-import './products.css';
+
 import { useEffect, useRef, useState } from 'react';
 import UserCard from "../UserCard";
 import QueryLoader from "../QueryLoader";
@@ -17,6 +17,7 @@ const RefImput = () => {
 
     // }, [])
 
+    
     return (
         <label htmlFor="">
             <input ref={inputRef} id='InputRef' />

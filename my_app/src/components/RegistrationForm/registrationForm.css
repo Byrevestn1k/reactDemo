@@ -1,10 +1,15 @@
 .common {
 	display: flex;
 	flex-direction: column;
+	
 }
 
 .users-list {
 	display: flex;
-	flex-direction: column;
+	flex-wrap: wrap;
 	gap: 20px;
+}
+
+.singl-user span{
+font-weight: bold;
 }

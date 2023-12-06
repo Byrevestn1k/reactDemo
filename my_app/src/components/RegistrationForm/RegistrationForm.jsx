@@ -7,11 +7,12 @@ import './registrationForm.css';
 // import {isEmpty} from 'lodash';//чи пустий
 // import style from './eddProducForm.module.css';
 import { v4 as uuidv4 } from 'uuid';
+import QueryLoader from "../QueryLoader";
 
 
 const RegistrationForm = () => {
 
-	const [products, setProducts] = useState([]);
+	const [users, setUsers] = useState([]);
 	const [name, setname] = useState();
 	const [username, setusername] = useState();
 	const [email, setemail] = useState();
@@ -26,19 +27,19 @@ const RegistrationForm = () => {
     
     
     
-	function maxLenghtWord(products) {
+	function maxLenghtWord(users) {
 		let maxLenghtWord = 0
 		let maxLenghtWordName = ''
 		let arrMaxLenghtWordsName = '';
 		// let arrMaxLenghtWordsName = [];
-		products.map((element) => {
+		users.map((element) => {
 			if (element.name.length > maxLenghtWord) {
 				maxLenghtWord = element.name.length
 				maxLenghtWordName = element.name
 			}
 
 		})
-		products.map((element) => {
+		users.map((element) => {
 			if (element.name.length === maxLenghtWordName.length) {
 				arrMaxLenghtWordsName += element.name + ' '
 				// arrMaxLenghtWordsName.push(element.name)
@@ -59,7 +60,7 @@ const RegistrationForm = () => {
 		};
 
 		if (product.name && product.username && product.email) {
-			setProducts([...products, product]);
+			setUsers([...users, product]);
 			setname(``);
 			setusername('');
 			setemail('');
@@ -95,7 +96,7 @@ const RegistrationForm = () => {
 	};
 
 	const onDeleteProduct = (id) => {
-		setProducts(products.filter((product) => product.id !== id))
+		setUsers(users.filter((product) => product.id !== id))
 	}
 
 	const returnToAdd = (id) => {
@@ -107,7 +108,7 @@ const RegistrationForm = () => {
 	}
 
 	const onSaveProduct = () => {
-		products.map((product) => {
+		users.map((product) => {
 			if (product.id === getIdForSave) {
 				product.name = name;
 				product.username = username;
@@ -119,7 +120,7 @@ const RegistrationForm = () => {
 
 		})
 
-		setProducts(products)
+		setUsers(users)
 		onGetName('');
 		onGetusername('');
 		onGetemail('');
@@ -129,7 +130,7 @@ const RegistrationForm = () => {
 	}
 
 	const onUpdateProduct = (el) => {
-		let newUp = products.filter((product) => {
+		let newUp = users.filter((product) => {
 
 			if (product.id === el) {
 				onGetbuttonSaveProductFlag(true)
@@ -141,6 +142,7 @@ const RegistrationForm = () => {
 			console.log(newUp[0].id);
 			onGetName(newUp[0].name)
 			onGetusername(newUp[0].username)
+			console.log(newUp[0].email);
 			onGetemail(newUp[0].email)
 			onGetphone(newUp[0].phone)
 			onGetIdForSave(el)
@@ -153,7 +155,7 @@ const RegistrationForm = () => {
 
 	const editProductTitle = () => {
 		let title
-		products.map((product) => {
+		users.map((product) => {
 			if (product.id === getIdForSave) {
 				title = product.name
 				return
@@ -167,10 +169,10 @@ const RegistrationForm = () => {
 			.then(response => response.json())
 			.then(resp => {
 				setFetching(false)
-				setProducts(resp)
-                console.log(products);
-                // maxLenghtWord(products)
-                // setUsersCount(products.length)
+				setUsers(resp)
+                console.log(users);
+                // maxLenghtWord(users)
+                // setUsersCount(users.length)
               
 			})		
   			.catch(err => {
@@ -184,20 +186,21 @@ const RegistrationForm = () => {
 				buttonSaveProductFlag ? <h2 className="edit-product">Edit product - {editProductTitle()} </h2> : <h2>Add new product</h2>
 			}
 			<div className="add-new-product-panel">
-				<Input classNameFlag={redClassFlag} label="name: " placeholder="Enter product's name" onChangeFunction={onGetName} value={name} />
-				<Input classNameFlag={redClassFlag} label="username: " placeholder="Enter product's username url" onChangeFunction={onGetusername} value={username} />
-				<Input classNameFlag={redClassFlag} label="email: " placeholder="Enter product's email" onChangeFunction={onGetemail} type='number' value={email} />
-				<Input label="phone: " placeholder="Enter product's phone" onChangeFunction={onGetphone} type='number' value={phone} />
+				<Input classNameFlag={redClassFlag} label="name: " placeholder="Enter user`s name" onChangeFunction={onGetName} value={name} />
+				<Input classNameFlag={redClassFlag} label="username: " placeholder="Enter user`s username url" onChangeFunction={onGetusername} value={username} />
+				<Input classNameFlag={redClassFlag} label="email: " placeholder="Enter user`s email" onChangeFunction={onGetemail} type='text' value={email} />
+				<Input label="phone: " placeholder="Enter user`s phone" onChangeFunction={onGetphone} type='nutextmber' value={phone} />
 
 			</div>
 			{
 				buttonSaveProductFlag ? <div><button className="add-product-item" type="button" onClick={onSaveProduct}>save product</button> <button className="add-product-item" type="button" onClick={returnToAdd}>return to add mode</button></div> : <button className="add-product-item" type="button" onClick={onAddProduct}>add</button>
 			}
 			<hr />
-			<div className='products-list'>
+			<div className='users-list'>
+			<QueryLoader fetching={fetching} error={fetchError} />
 				{
 
-					products.map((product, index) => {
+					users.map((product, index) => {
 						const { name, username, email, phone, id } = product;
 						return (<UserCard key={index} name={name} username={username} email={email} sale={phone} id={id} onDeleteProduct={onDeleteProduct} onUpdateProduct={onUpdateProduct} />)
 

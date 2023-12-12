@@ -12,3 +12,14 @@
     width: 100%;
     justify-content: space-around;
 }
+
+.servise__input{
+    display: flex;
+}
+
+.servise__input input{
+    margin-left: 10px;
+}
+.servise__input button{
+    margin-right: 10px;
+}

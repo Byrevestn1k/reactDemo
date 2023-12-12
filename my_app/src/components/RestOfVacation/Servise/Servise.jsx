@@ -1,14 +1,17 @@
 
-import { useEffect, useState,  useContext } from 'react';
+import { useEffect, useState, createContext } from 'react';
 import Input from "../../Input";
 import { v4 as uuidv4 } from 'uuid';
-import { RestVacation } from "../RestOfVacation"
 import SameYear from "../SameYear";
-const Servise = (props) => {
+
+
+export const RestVacation = createContext()
+const Servise = () => {
 	const [startService, setStartService] =useState()
 	const [endService, setEndService] = useState()
 	const [daysOfServise, setDaysOfServise] = useState()// додаткова відпустка
 	const [additionalLeave, setAdditionalLeave] = useState()// всилуга Повних
+	
 	
 	
 	function onGetStart(value){
@@ -17,35 +20,34 @@ const Servise = (props) => {
 	function onGetEnd(value){
 		setEndService(value)
 	}
-	
-	function getdaysOfServise(){
-	
+
+	function getdaysOfServise(startService, endService){
 	let startDate = new Date (startService)
 	let endDate = new Date (endService)
 	let additionalLeave;
 	if(endDate.getFullYear()-startDate.getFullYear()<=5){
-		console.log('Вислуга повних років', endDate.getFullYear()-startDate.getFullYear());
+		// console.log('Вислуга повних років', endDate.getFullYear()-startDate.getFullYear());
 		setAdditionalLeave(endDate.getFullYear()-startDate.getFullYear());
 	}
 	else {
 		
 		if(endDate.getMonth()>startDate.getMonth()){
-			console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
+			// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
 			additionalLeave = ((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
 		}
 
 		else if(endDate.getMonth()< startDate.getMonth()){
-			console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
+			// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
 			additionalLeave =(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
 		}
 		else  {
 			
 			if(endDate.getDate()>=startDate.getDate()){
-				console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
+				// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
 				additionalLeave =((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
 			}
 			else{
-				console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
+				// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
 				additionalLeave =(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
 			}
 		}
@@ -53,9 +55,14 @@ const Servise = (props) => {
 	}
 	
 			// console.log(`вислуга  повних років  `+additionalLeave);
-			setAdditionalLeave(additionalLeave)
-			setDaysOfServise(additionalLeave>5?additionalLeave-5:0)
+return additionalLeave
 					// getAllDaysOfServise(daysOfServise)
+	}
+	function getdaysOfServiseHandler(){
+		let additionalLeave = getdaysOfServise(startService, endService)
+		console.log(additionalLeave);
+		setAdditionalLeave(additionalLeave)
+		setDaysOfServise(additionalLeave>5?additionalLeave-5:0)
 	}
 
 		
@@ -80,16 +87,19 @@ const Servise = (props) => {
 			<Input label="Початок служби " type="date"  onChangeFunction={onGetStart} value={startService} />
 			<Input label="Кінець служби " type="date" onChangeFunction={onGetEnd} value={endService} />
 			<button onClick={addPeriod}>Додати період</button>
-			<button onClick={getdaysOfServise}>розрахувати</button>
+			<button onClick={getdaysOfServiseHandler}>розрахувати</button>
 			<div>Днів додаткової відпустки станом на останню вказану дату: {daysOfServise}</div>
 			<div>вислуга років: {additionalLeave}</div>
 			</div>
 		</div>
+
 		<div>
-				<div className="restoftitle">
+		<div className="restoftitle">
+		<RestVacation.Provider value={{getdaysOfServise, startService}}>
 				{arrYears.map((el)=>{
 					return <SameYear year={el} daysOfServise={daysOfServise} />
 				})	}
+		</RestVacation.Provider>
 		</div>
 		</div>
 	</div>

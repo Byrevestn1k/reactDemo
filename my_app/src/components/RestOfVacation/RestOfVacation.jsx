@@ -19,9 +19,7 @@ const RestOfVacation = () => {
 				<Servise/>
 				
 			</div>
-			{/* <div className="serviseofyeaer">
-				<ServiseOfYeaer restvacation={`1`}/>
-			</div> */}
+	
 		</div>
 	</div>
 

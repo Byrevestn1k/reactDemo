@@ -9,9 +9,9 @@ const ServiseDate = (props) => {
 
 let [inputVaction, setSnputVaction] = useState()
 	const { id,value, type, placeholder, label, classNameFlag,  classOfInput, restOfVacation } = props;
-	let [summ, setSumm] = useState(restOfVacation);
+	let restVacation =restOfVacation;
+	let [summ, setSumm] = useState(restVacation);
 	let SummRestOfVacation =summ;
-	console.log( SummRestOfVacation);
 	function onChangeFunction(params) {
 	setSnputVaction (params);
 }

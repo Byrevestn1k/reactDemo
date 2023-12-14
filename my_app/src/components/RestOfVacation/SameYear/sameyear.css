@@ -11,9 +11,17 @@ width:35px;
 .sameyear{
 border-bottom: 1px solid black;
 padding-bottom: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 .green{
 color: green;
 font-size: 18px;
 font-weight: bold;
+}
+.vac{
+    border-left:  1px solid black;
+    padding: 0 20px;
+    margin-left: 10px;
 }

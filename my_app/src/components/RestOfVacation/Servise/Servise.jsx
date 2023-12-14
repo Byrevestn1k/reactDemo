@@ -22,47 +22,49 @@ const Servise = () => {
 	}
 
 	function getdaysOfServise(startService, endService){
-	let startDate = new Date (startService)
-	let endDate = new Date (endService)
-	let additionalLeave;
-	if(endDate.getFullYear()-startDate.getFullYear()<=5){
-		// console.log('Вислуга повних років', endDate.getFullYear()-startDate.getFullYear());
-		setAdditionalLeave(endDate.getFullYear()-startDate.getFullYear());
-	}
-	else {
-		
-		if(endDate.getMonth()>startDate.getMonth()){
-			// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
-			additionalLeave = ((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
-		}
 
-		else if(endDate.getMonth()< startDate.getMonth()){
-			// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
-			additionalLeave =(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
+		let startDate = new Date (startService)
+		let endDate = new Date (endService)
+		let additionalLeave;
+		if(endDate.getFullYear()-startDate.getFullYear()<=5){
+			// console.log('Вислуга повних років', endDate.getFullYear()-startDate.getFullYear());
+			setAdditionalLeave(endDate.getFullYear()-startDate.getFullYear());
 		}
-		else  {
+		else {
 			
-			if(endDate.getDate()>=startDate.getDate()){
+			if(endDate.getMonth()>startDate.getMonth()){
 				// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
-				additionalLeave =((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
+				additionalLeave = ((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
 			}
-			else{
+
+			else if(endDate.getMonth()< startDate.getMonth()){
 				// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
 				additionalLeave =(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
 			}
+			else  {
+				
+				if(endDate.getDate()>=startDate.getDate()){
+					// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())));
+					additionalLeave =((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear()))
+				}
+				else{
+					// console.log('Вислуга повних років',((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1));
+					additionalLeave =(((new Date (endDate).getFullYear())- (new Date (startDate).getFullYear())-1))
+				}
+			}
+				
 		}
-			
-	}
-	
-			// console.log(`вислуга  повних років  `+additionalLeave);
-return additionalLeave
+		return additionalLeave;
+		
 					// getAllDaysOfServise(daysOfServise)
 	}
 	function getdaysOfServiseHandler(){
-		let additionalLeave = getdaysOfServise(startService, endService)
-		console.log(additionalLeave);
-		setAdditionalLeave(additionalLeave)
-		setDaysOfServise(additionalLeave>5?additionalLeave-5:0)
+		let days= getdaysOfServise(startService, endService)
+		setAdditionalLeave(days)
+		setDaysOfServise(days>5?days-5:0)
+		
+	
+		
 	}
 
 		
